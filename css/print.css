@@ -1,0 +1,39 @@
+/* Receipt hidden on screen until populated for print */
+#receipt-root {
+  display: none;
+}
+
+#receipt-root.receipt-ready {
+  display: block;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #receipt-root.receipt-ready,
+  #receipt-root.receipt-ready * {
+    visibility: visible;
+  }
+
+  #receipt-root.receipt-ready {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 80mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff !important;
+    color: #111 !important;
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+  }
+
+  @page {
+    margin: 10mm;
+    size: auto;
+  }
+}
